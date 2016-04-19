@@ -83,7 +83,7 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             animation({
                 self.coverView.alpha = 1
                 self.duringPresentingActionHandler?(fromView: fromView, toView: toView)
-                }, completion: completion)
+            }, completion: completion)
         }
         
         func executeDismissAnimation(container: UIView, toView: UIView, fromView: UIView, completion: (Bool) -> Void) {
@@ -93,8 +93,7 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             animation({
                 self.duringDismissingActionHandler?(fromView: fromView, toView: toView)
                 self.coverView.alpha = 0
-                self.coverView.removeFromSuperview()
-                }, completion: completion)
+            }, completion: completion)
         }
         
         // MARK: Real logical
