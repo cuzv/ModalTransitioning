@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "PresentAnimatedTransitioningController"
-  s.version = "0.1.1"
+  s.version = "1.0.0"
   s.license = "MIT"
   s.summary = "Like the default present transitioning with custom animation."
   s.homepage = "https://github.com/cuzv/PresentAnimatedTransitioningController"

@@ -27,11 +27,13 @@
 import UIKit
 
 public final class PresentAnimatedTransitioningController: NSObject {
-    public typealias ContextAction = (fromView: UIView, toView: UIView) -> ()
+    public typealias ContextAction = (UIView, UIView) -> ()
     public var prepareForPresentActionHandler: ContextAction?
     public var duringPresentingActionHandler: ContextAction?
+    public var didPresentedActionHandler: ContextAction?
     public var prepareForDismissActionHandler: ContextAction?
     public var duringDismissingActionHandler: ContextAction?
+    public var didDismissedActionHandler: ContextAction?
     
     /// Default cover is a dim view, you could override this property to your preferred style view.
     public var coverView: UIView = {
@@ -79,28 +81,36 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             toView.frame = container.bounds
             container.addSubview(toView)
             
-            prepareForPresentActionHandler?(fromView: fromView, toView: toView)
+            prepareForPresentActionHandler?(fromView, toView)
             animation({
                 self.coverView.alpha = 1
-                self.duringPresentingActionHandler?(fromView: fromView, toView: toView)
+                self.duringPresentingActionHandler?(fromView, toView)
             }, completion: completion)
+            
+            animation({ 
+                self.coverView.alpha = 1
+                self.duringPresentingActionHandler?(fromView, toView)
+            }) { (flag) in
+                self.didPresentedActionHandler?(fromView, toView)
+                completion(flag)
+            }
         }
         
         func executeDismissAnimation(container: UIView, toView: UIView, fromView: UIView, completion: (Bool) -> Void) {
             container.addSubview(fromView)
             
-            prepareForDismissActionHandler?(fromView: fromView, toView: toView)
-            animation({
-                self.duringDismissingActionHandler?(fromView: fromView, toView: toView)
+            prepareForDismissActionHandler?(fromView, toView)
+            animation({ 
+                self.duringDismissingActionHandler?(fromView, toView)
                 self.coverView.alpha = 0
-            }, completion: completion)
+            }) { (flag) in
+                self.didDismissedActionHandler?(fromView, toView)
+                completion(flag)
+            }
         }
         
         // MARK: Real logical
         
-        guard let container = transitionContext.containerView() else {
-            return transitionContext.completeTransition(false)
-        }
         guard let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
             return transitionContext.completeTransition(false)
         }
@@ -108,6 +118,7 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             return transitionContext.completeTransition(false)
         }
         
+        let container = transitionContext.containerView()
         if isPresent {
             executePresentAnimation(container, toView: to.view, fromView: from.view) { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
