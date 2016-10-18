@@ -27,6 +27,7 @@
 import UIKit
 
 public final class PresentAnimatedTransitioningController: NSObject {
+    /// (fromView, toView)
     public typealias ContextAction = (UIView, UIView) -> ()
     public var prepareForPresentActionHandler: ContextAction?
     public var duringPresentingActionHandler: ContextAction?
@@ -38,12 +39,12 @@ public final class PresentAnimatedTransitioningController: NSObject {
     /// Default cover is a dim view, you could override this property to your preferred style view.
     public var coverView: UIView = {
         let coverView = UIView()
-        coverView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-        coverView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        coverView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        coverView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return coverView
     }()
     
-    private var isPresent: Bool = false
+    fileprivate var isPresent: Bool = false
     
     public func prepareForPresent() -> Self {
         isPresent = true
@@ -59,22 +60,22 @@ public final class PresentAnimatedTransitioningController: NSObject {
 // MARK: UIViewControllerAnimatedTransitioning
 
 extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransitioning {
-    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         // MARK: Helpers
         
-        func animationOptionsForAnimationCurve(curve: UInt) -> UIViewAnimationOptions {
+        func animationOptions(curve: UInt) -> UIViewAnimationOptions {
             return UIViewAnimationOptions(rawValue: curve << 16)
         }
         
-        func animation(animations: () -> Void, completion: (Bool) -> Void) {
-            UIView.animateWithDuration(0.25, delay: 0, options: animationOptionsForAnimationCurve(7), animations: animations, completion: completion)
+        func execute(animations: @escaping () -> Void, completion: @escaping (Bool) -> Void) {
+            UIView.animate(withDuration: 0.25, delay: 0, options: animationOptions(curve: 7), animations: animations, completion: completion)
         }
         
-        func executePresentAnimation(container: UIView, toView: UIView, fromView: UIView, completion: (Bool) -> Void) {
+        func executePresentAnimation(with container: UIView, fromView: UIView, toView: UIView, completion: @escaping (Bool) -> Void) {
             coverView.frame = container.bounds
             coverView.alpha = 0
             container.addSubview(coverView)
@@ -82,12 +83,12 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             container.addSubview(toView)
             
             prepareForPresentActionHandler?(fromView, toView)
-            animation({
+            execute(animations: { 
                 self.coverView.alpha = 1
                 self.duringPresentingActionHandler?(fromView, toView)
             }, completion: completion)
             
-            animation({ 
+            execute(animations: { 
                 self.coverView.alpha = 1
                 self.duringPresentingActionHandler?(fromView, toView)
             }) { (flag) in
@@ -96,11 +97,11 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             }
         }
         
-        func executeDismissAnimation(container: UIView, toView: UIView, fromView: UIView, completion: (Bool) -> Void) {
+        func executeDismissAnimation(with container: UIView, fromView: UIView, toView: UIView, completion: @escaping (Bool) -> Void) {
             container.addSubview(fromView)
             
             prepareForDismissActionHandler?(fromView, toView)
-            animation({ 
+            execute(animations: { 
                 self.duringDismissingActionHandler?(fromView, toView)
                 self.coverView.alpha = 0
             }) { (flag) in
@@ -111,21 +112,21 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
         
         // MARK: Real logical
         
-        guard let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
+        guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             return transitionContext.completeTransition(false)
         }
-        guard let from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) else {
+        guard let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
             return transitionContext.completeTransition(false)
         }
         
-        let container = transitionContext.containerView()
+        let container = transitionContext.containerView
         if isPresent {
-            executePresentAnimation(container, toView: to.view, fromView: from.view) { _ in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            executePresentAnimation(with: container, fromView: from.view, toView: to.view) { (_) in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         } else {
-            executeDismissAnimation(container, toView: to.view, fromView: from.view) { _ in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            executeDismissAnimation(with: container, fromView: from.view, toView: to.view) { (_) in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
