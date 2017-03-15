@@ -72,7 +72,12 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
         }
         
         func execute(animations: @escaping () -> Void, completion: @escaping (Bool) -> Void) {
-            UIView.animate(withDuration: 0.25, delay: 0, options: animationOptions(curve: 7), animations: animations, completion: completion)
+            // Prevent other interactions disturb
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: animationOptions(curve: 7), animations: animations) { (flag: Bool) in
+                completion(flag)
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
         }
         
         func executePresentAnimation(with container: UIView, fromView: UIView, toView: UIView, completion: @escaping (Bool) -> Void) {
@@ -87,14 +92,6 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
                 self.coverView.alpha = 1
                 self.duringPresentingActionHandler?(fromView, toView)
             }, completion: completion)
-            
-            execute(animations: { 
-                self.coverView.alpha = 1
-                self.duringPresentingActionHandler?(fromView, toView)
-            }) { (flag) in
-                self.didPresentedActionHandler?(fromView, toView)
-                completion(flag)
-            }
         }
         
         func executeDismissAnimation(with container: UIView, fromView: UIView, toView: UIView, completion: @escaping (Bool) -> Void) {
