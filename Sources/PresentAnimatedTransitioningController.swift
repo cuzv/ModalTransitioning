@@ -2,8 +2,8 @@
 //  PresentAnimatedTransitioningController.swift
 //  PresentAnimatedTransitioningController
 //
-//  Created by Moch Xiao on 4/19/16.
-//  Copyright © @2016 Moch Xiao (http://mochxiao.com).
+//  Created by Roy Shaw on 4/19/16.
+//  Copyright © @2016 RedRain.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,13 +28,13 @@ import UIKit
 
 public final class PresentAnimatedTransitioningController: NSObject {
     /// (fromView, toView)
-    public typealias ContextAction = (UIView, UIView) -> ()
-    public var prepareForPresentActionHandler: ContextAction?
-    public var duringPresentingActionHandler: ContextAction?
-    public var didPresentedActionHandler: ContextAction?
-    public var prepareForDismissActionHandler: ContextAction?
-    public var duringDismissingActionHandler: ContextAction?
-    public var didDismissedActionHandler: ContextAction?
+    public typealias ActionHandler = (UIView, UIView) -> Void
+    public var willPresent: ActionHandler?
+    public var inPresent: ActionHandler?
+    public var didPresent: ActionHandler?
+    public var willDismiss: ActionHandler?
+    public var inDismiss: ActionHandler?
+    public var didDismiss: ActionHandler?
     
     /// Default cover is a dim view, you could override this property to your preferred style view.
     public var coverView: UIView = {
@@ -44,14 +44,14 @@ public final class PresentAnimatedTransitioningController: NSObject {
         return coverView
     }()
     
-    fileprivate var isPresent: Bool = false
+    private var isPresent: Bool = false
     
-    public func prepareForPresent() -> Self {
+    public func forPresent() -> Self {
         isPresent = true
         return self
     }
     
-    public func prepareForDismiss() -> Self {
+    public func forDismiss() -> Self {
         isPresent = false
         return self
     }
@@ -59,14 +59,12 @@ public final class PresentAnimatedTransitioningController: NSObject {
 
 // MARK: UIViewControllerAnimatedTransitioning
 
-extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransitioning {
+extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimatedTransitioning {
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        // MARK: Helpers
-        
         func animationOptions(curve: UInt) -> UIViewAnimationOptions {
             return UIViewAnimationOptions(rawValue: curve << 16)
         }
@@ -87,27 +85,28 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             toView.frame = container.bounds
             container.addSubview(toView)
             
-            prepareForPresentActionHandler?(fromView, toView)
-            execute(animations: { 
+            willPresent?(fromView, toView)
+            execute(animations: {
                 self.coverView.alpha = 1
-                self.duringPresentingActionHandler?(fromView, toView)
-            }, completion: completion)
+                self.inPresent?(fromView, toView)
+            }, completion: { flag in
+                self.didPresent?(fromView, toView)
+                completion(flag)
+            })
         }
         
         func executeDismissAnimation(with container: UIView, fromView: UIView, toView: UIView, completion: @escaping (Bool) -> Void) {
             container.addSubview(fromView)
             
-            prepareForDismissActionHandler?(fromView, toView)
-            execute(animations: { 
-                self.duringDismissingActionHandler?(fromView, toView)
+            willDismiss?(fromView, toView)
+            execute(animations: {
+                self.inDismiss?(fromView, toView)
                 self.coverView.alpha = 0
-            }) { (flag) in
-                self.didDismissedActionHandler?(fromView, toView)
+            }, completion: { flag in
+                self.didDismiss?(fromView, toView)
                 completion(flag)
-            }
+            })
         }
-        
-        // MARK: Real logical
         
         guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             return transitionContext.completeTransition(false)
@@ -116,13 +115,12 @@ extension PresentAnimatedTransitioningController: UIViewControllerAnimatedTransi
             return transitionContext.completeTransition(false)
         }
         
-        let container = transitionContext.containerView
         if isPresent {
-            executePresentAnimation(with: container, fromView: from.view, toView: to.view) { (_) in
+            executePresentAnimation(with: transitionContext.containerView, fromView: from.view, toView: to.view) { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         } else {
-            executeDismissAnimation(with: container, fromView: from.view, toView: to.view) { (_) in
+            executeDismissAnimation(with: transitionContext.containerView, fromView: from.view, toView: to.view) { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
