@@ -44,17 +44,7 @@ public final class PresentAnimatedTransitioningController: NSObject {
         return coverView
     }()
     
-    private var isPresent: Bool = false
-    
-    public func forPresent() -> Self {
-        isPresent = true
-        return self
-    }
-    
-    public func forDismiss() -> Self {
-        isPresent = false
-        return self
-    }
+    private var isPresenting: Bool = false
 }
 
 // MARK: UIViewControllerAnimatedTransitioning
@@ -115,7 +105,7 @@ extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimated
             return transitionContext.completeTransition(false)
         }
         
-        if isPresent {
+        if isPresenting {
             executePresentAnimation(with: transitionContext.containerView, fromView: from.view, toView: to.view) { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
@@ -124,5 +114,19 @@ extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimated
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension PresentAnimatedTransitioningController: UIKit.UIViewControllerTransitioningDelegate {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.isPresenting = true
+        return self
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.isPresenting = false
+        return self
     }
 }
