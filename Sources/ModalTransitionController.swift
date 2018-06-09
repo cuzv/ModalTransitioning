@@ -1,9 +1,9 @@
 //
-//  PresentAnimatedTransitioningController.swift
-//  PresentAnimatedTransitioningController
+//  ModalTransitionController.swift
+//  ModalTransitionController
 //
 //  Created by Roy Shaw on 4/19/16.
-//  Copyright © @2016 RedRain.
+//  Copyright @2016 RedRain.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +26,14 @@
 
 import UIKit
 
-public final class PresentAnimatedTransitioningController: NSObject {
+public final class ModalTransitionController: NSObject {
     /// (fromView, toView)
     public typealias ActionHandler = (UIView, UIView) -> Void
     public var willPresent: ActionHandler?
-    public var inPresent: ActionHandler?
+    public var inPresentation: ActionHandler?
     public var didPresent: ActionHandler?
     public var willDismiss: ActionHandler?
-    public var inDismiss: ActionHandler?
+    public var inDismissal: ActionHandler?
     public var didDismiss: ActionHandler?
     
     /// Default cover is a dim view, you could override this property to your preferred style view.
@@ -49,7 +49,7 @@ public final class PresentAnimatedTransitioningController: NSObject {
 
 // MARK: UIViewControllerAnimatedTransitioning
 
-extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimatedTransitioning {
+extension ModalTransitionController: UIKit.UIViewControllerAnimatedTransitioning {
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
@@ -78,7 +78,7 @@ extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimated
             willPresent?(fromView, toView)
             execute(animations: {
                 self.coverView.alpha = 1
-                self.inPresent?(fromView, toView)
+                self.inPresentation?(fromView, toView)
             }, completion: { flag in
                 self.didPresent?(fromView, toView)
                 completion(flag)
@@ -90,7 +90,7 @@ extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimated
             
             willDismiss?(fromView, toView)
             execute(animations: {
-                self.inDismiss?(fromView, toView)
+                self.inDismissal?(fromView, toView)
                 self.coverView.alpha = 0
             }, completion: { flag in
                 self.didDismiss?(fromView, toView)
@@ -119,7 +119,7 @@ extension PresentAnimatedTransitioningController: UIKit.UIViewControllerAnimated
 
 // MARK: - UIViewControllerTransitioningDelegate
 
-extension PresentAnimatedTransitioningController: UIKit.UIViewControllerTransitioningDelegate {
+extension ModalTransitionController: UIKit.UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.isPresenting = true
         return self

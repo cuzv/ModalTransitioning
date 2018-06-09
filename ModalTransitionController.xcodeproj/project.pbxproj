@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46D9CEBD1CC64229005F0B9B /* PresentAnimatedTransitioningController.h in Headers */ = {isa = PBXBuildFile; fileRef = 46D9CEBC1CC64229005F0B9B /* PresentAnimatedTransitioningController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		46D9CEC51CC64230005F0B9B /* PresentAnimatedTransitioningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9CEC41CC64230005F0B9B /* PresentAnimatedTransitioningController.swift */; };
+		46D9CEBD1CC64229005F0B9B /* ModalTransitionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 46D9CEBC1CC64229005F0B9B /* ModalTransitionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F902517420CBC90600067CB8 /* ModalTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902517320CBC90600067CB8 /* ModalTransitionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46D9CEB91CC64229005F0B9B /* PresentAnimatedTransitioningController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PresentAnimatedTransitioningController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		46D9CEBC1CC64229005F0B9B /* PresentAnimatedTransitioningController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentAnimatedTransitioningController.h; sourceTree = "<group>"; };
+		46D9CEB91CC64229005F0B9B /* ModalTransitionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ModalTransitionController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46D9CEBC1CC64229005F0B9B /* ModalTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModalTransitionController.h; sourceTree = "<group>"; };
 		46D9CEBE1CC64229005F0B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46D9CEC41CC64230005F0B9B /* PresentAnimatedTransitioningController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentAnimatedTransitioningController.swift; sourceTree = "<group>"; };
+		F902517320CBC90600067CB8 /* ModalTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransitionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 		46D9CEBA1CC64229005F0B9B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				46D9CEB91CC64229005F0B9B /* PresentAnimatedTransitioningController.framework */,
+				46D9CEB91CC64229005F0B9B /* ModalTransitionController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 		46D9CEBB1CC64229005F0B9B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				46D9CEBC1CC64229005F0B9B /* PresentAnimatedTransitioningController.h */,
+				F902517320CBC90600067CB8 /* ModalTransitionController.swift */,
+				46D9CEBC1CC64229005F0B9B /* ModalTransitionController.h */,
 				46D9CEBE1CC64229005F0B9B /* Info.plist */,
-				46D9CEC41CC64230005F0B9B /* PresentAnimatedTransitioningController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -62,16 +62,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D9CEBD1CC64229005F0B9B /* PresentAnimatedTransitioningController.h in Headers */,
+				46D9CEBD1CC64229005F0B9B /* ModalTransitionController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		46D9CEB81CC64229005F0B9B /* PresentAnimatedTransitioningController */ = {
+		46D9CEB81CC64229005F0B9B /* ModalTransitionController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 46D9CEC11CC64229005F0B9B /* Build configuration list for PBXNativeTarget "PresentAnimatedTransitioningController" */;
+			buildConfigurationList = 46D9CEC11CC64229005F0B9B /* Build configuration list for PBXNativeTarget "ModalTransitionController" */;
 			buildPhases = (
 				46D9CEB41CC64229005F0B9B /* Sources */,
 				46D9CEB51CC64229005F0B9B /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = PresentAnimatedTransitioningController;
+			name = ModalTransitionController;
 			productName = PresentAnimatedTransitioningController;
-			productReference = 46D9CEB91CC64229005F0B9B /* PresentAnimatedTransitioningController.framework */;
+			productReference = 46D9CEB91CC64229005F0B9B /* ModalTransitionController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -94,15 +94,15 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = Moch;
+				ORGANIZATIONNAME = RedRain;
 				TargetAttributes = {
 					46D9CEB81CC64229005F0B9B = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
-			buildConfigurationList = 46D9CEB31CC64229005F0B9B /* Build configuration list for PBXProject "PresentAnimatedTransitioningController" */;
+			buildConfigurationList = 46D9CEB31CC64229005F0B9B /* Build configuration list for PBXProject "ModalTransitionController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				46D9CEB81CC64229005F0B9B /* PresentAnimatedTransitioningController */,
+				46D9CEB81CC64229005F0B9B /* ModalTransitionController */,
 			);
 		};
 /* End PBXProject section */
@@ -134,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D9CEC51CC64230005F0B9B /* PresentAnimatedTransitioningController.swift in Sources */,
+				F902517420CBC90600067CB8 /* ModalTransitionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +266,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mochxiao.PresentAnimatedTransitioningController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mochxiao.ModalTransitionController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -287,7 +287,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mochxiao.PresentAnimatedTransitioningController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mochxiao.ModalTransitionController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -297,7 +297,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		46D9CEB31CC64229005F0B9B /* Build configuration list for PBXProject "PresentAnimatedTransitioningController" */ = {
+		46D9CEB31CC64229005F0B9B /* Build configuration list for PBXProject "ModalTransitionController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46D9CEBF1CC64229005F0B9B /* Debug */,
@@ -306,7 +306,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46D9CEC11CC64229005F0B9B /* Build configuration list for PBXNativeTarget "PresentAnimatedTransitioningController" */ = {
+		46D9CEC11CC64229005F0B9B /* Build configuration list for PBXNativeTarget "ModalTransitionController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46D9CEC21CC64229005F0B9B /* Debug */,

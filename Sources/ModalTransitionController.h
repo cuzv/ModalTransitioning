@@ -1,9 +1,9 @@
 //
-//  PresentAnimatedTransitioningController.h
-//  PresentAnimatedTransitioningController
+//  ModalTransitionController.h
+//  ModalTransitionController
 //
 //  Created by Roy Shaw on 4/19/16.
-//  Copyright © @2016 RedRain.
+//  Copyright @2016 RedRain.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,12 @@
 //
 #import <UIKit/UIKit.h>
 
-//! Project version number for PresentAnimatedTransitioningController.
-FOUNDATION_EXPORT double PresentAnimatedTransitioningControllerVersionNumber;
+//! Project version number for ModalTransitionController.
+FOUNDATION_EXPORT double ModalTransitionControllerVersionNumber;
 
-//! Project version string for PresentAnimatedTransitioningController.
-FOUNDATION_EXPORT const unsigned char PresentAnimatedTransitioningControllerVersionString[];
+//! Project version string for ModalTransitionController.
+FOUNDATION_EXPORT const unsigned char ModalTransitionControllerVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <PresentAnimatedTransitioningController/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <ModalTransitionController/PublicHeader.h>
 
 

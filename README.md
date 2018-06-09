@@ -1,5 +1,5 @@
-# PresentAnimatedTransitioningController
-Like the default present transitioning with custom animation.
+# ModalTransitionController
+Like the default modal present transitioning with custom animation.
 
 
 

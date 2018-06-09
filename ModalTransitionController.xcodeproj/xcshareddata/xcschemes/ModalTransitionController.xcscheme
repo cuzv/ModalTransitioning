@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "46D9CEB81CC64229005F0B9B"
-               BuildableName = "PresentAnimatedTransitioningController.framework"
-               BlueprintName = "PresentAnimatedTransitioningController"
-               ReferencedContainer = "container:PresentAnimatedTransitioningController.xcodeproj">
+               BuildableName = "ModalTransitionController.framework"
+               BlueprintName = "ModalTransitionController"
+               ReferencedContainer = "container:ModalTransitionController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46D9CEB81CC64229005F0B9B"
-            BuildableName = "PresentAnimatedTransitioningController.framework"
-            BlueprintName = "PresentAnimatedTransitioningController"
-            ReferencedContainer = "container:PresentAnimatedTransitioningController.xcodeproj">
+            BuildableName = "ModalTransitionController.framework"
+            BlueprintName = "ModalTransitionController"
+            ReferencedContainer = "container:ModalTransitionController.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46D9CEB81CC64229005F0B9B"
-            BuildableName = "PresentAnimatedTransitioningController.framework"
-            BlueprintName = "PresentAnimatedTransitioningController"
-            ReferencedContainer = "container:PresentAnimatedTransitioningController.xcodeproj">
+            BuildableName = "ModalTransitionController.framework"
+            BlueprintName = "ModalTransitionController"
+            ReferencedContainer = "container:ModalTransitionController.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
