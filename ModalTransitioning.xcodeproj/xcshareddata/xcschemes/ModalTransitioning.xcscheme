@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46D9CEB81CC64229005F0B9B"
-               BuildableName = "ModalTransitionController.framework"
-               BlueprintName = "ModalTransitionController"
-               ReferencedContainer = "container:ModalTransitionController.xcodeproj">
+               BlueprintIdentifier = "F9DD1CEC21159E2B00F009E9"
+               BuildableName = "ModalTransitioning.framework"
+               BlueprintName = "ModalTransitioning"
+               ReferencedContainer = "container:ModalTransitioning.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46D9CEB81CC64229005F0B9B"
-            BuildableName = "ModalTransitionController.framework"
-            BlueprintName = "ModalTransitionController"
-            ReferencedContainer = "container:ModalTransitionController.xcodeproj">
+            BlueprintIdentifier = "F9DD1CEC21159E2B00F009E9"
+            BuildableName = "ModalTransitioning.framework"
+            BlueprintName = "ModalTransitioning"
+            ReferencedContainer = "container:ModalTransitioning.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46D9CEB81CC64229005F0B9B"
-            BuildableName = "ModalTransitionController.framework"
-            BlueprintName = "ModalTransitionController"
-            ReferencedContainer = "container:ModalTransitionController.xcodeproj">
+            BlueprintIdentifier = "F9DD1CEC21159E2B00F009E9"
+            BuildableName = "ModalTransitioning.framework"
+            BlueprintName = "ModalTransitioning"
+            ReferencedContainer = "container:ModalTransitioning.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
