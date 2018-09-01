@@ -2,8 +2,8 @@
 //  ModalPresentationAnimator.swift
 //  ModalTransitioning
 //
-//  Created by Roy Shaw on 8/4/18.
-//  Copyright © 2018 RedRain. All rights reserved.
+//  Created by Shaw on 8/4/18.
+//  Copyright © 2018 Shaw. All rights reserved.
 //
 
 import UIKit
