@@ -8,3 +8,7 @@
 ### 3.1.0
 
 - rename from `PresentAnimatedTransitioningController` to `ModalTransitionController`
+
+### 4.1.0
+
+- Support Swift 4.2

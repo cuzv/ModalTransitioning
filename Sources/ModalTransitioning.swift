@@ -10,7 +10,7 @@ import UIKit
 
 public protocol ModalPresentationTransitioning: class {
     var presentDuration: TimeInterval { get }
-    var presentOptions: UIViewAnimationOptions { get }
+    var presentOptions: UIView.AnimationOptions { get }
     
     func willPresent()
     func presenting()
@@ -19,14 +19,14 @@ public protocol ModalPresentationTransitioning: class {
 
 public extension ModalPresentationTransitioning {
     public var presentDuration: TimeInterval { return 0.25 }
-    public var presentOptions: UIViewAnimationOptions { return .curveEaseInOut }
+    public var presentOptions: UIView.AnimationOptions { return .curveEaseInOut }
     public func willPresent() {}
     public func didPresent() {}
 }
 
 public protocol ModalDismissionTransitioning: class {
     var dismissDuration: TimeInterval { get }
-    var dismissOptions: UIViewAnimationOptions { get }
+    var dismissOptions: UIView.AnimationOptions { get }
     
     func willDismiss()
     func dismissing()
@@ -35,7 +35,7 @@ public protocol ModalDismissionTransitioning: class {
 
 public extension ModalDismissionTransitioning {
     public var dismissDuration: TimeInterval { return 0.25 }
-    public var dismissOptions: UIViewAnimationOptions { return .curveEaseInOut }
+    public var dismissOptions: UIView.AnimationOptions { return .curveEaseInOut }
     public func willDismiss() {}
     public func didDismiss() {}
 }
