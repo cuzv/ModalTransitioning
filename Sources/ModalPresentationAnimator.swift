@@ -25,7 +25,8 @@ open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransiti
         
         let container = transitionContext.containerView
         to.view.frame = container.bounds
-        container.addSubview(to.view)        
+        container.addSubview(to.view)
+        to.view.layoutIfNeeded()
 
         delegate.willPresent()
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: delegate.presentOptions, animations: {
