@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "ModalTransitioning"
-  s.version = "4.1.0"
+  s.version = "4.1.1"
   s.license = "MIT"
   s.summary = "Like the default modal present transitioning with custom animation."
   s.homepage = "https://github.com/cuzv/ModalTransitioning"
