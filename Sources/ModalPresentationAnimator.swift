@@ -19,21 +19,24 @@ open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransiti
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let to = transitionContext.viewController(forKey: .to) else {
+        guard
+            let from = transitionContext.viewController(forKey: .from),
+            let to = transitionContext.viewController(forKey: .to)
+        else {
             return transitionContext.completeTransition(false)
         }
         
         let container = transitionContext.containerView
-        to.view.frame = container.bounds
         container.addSubview(to.view)
+        to.view.frame = transitionContext.finalFrame(for: to)
         to.view.layoutIfNeeded()
 
-        delegate.willPresent()
+        delegate.willPresentFrom(viewController: from)
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: delegate.presentOptions, animations: {
-            self.delegate.presenting()
+            self.delegate.presentingFrom(viewController: from)
         }, completion: { _ in
+            self.delegate.didPresentFrom(viewController: from)
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            self.delegate.didPresent()
         })
     }
 }
