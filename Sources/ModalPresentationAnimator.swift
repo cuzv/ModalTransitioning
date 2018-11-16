@@ -8,6 +8,8 @@
 
 import UIKit
 
+// See https://github.com/pronebird/CustomModalTransition
+// See https://stackoverflow.com/questions/25488267/custom-transition-animation-not-calling-vc-lifecycle-methods-on-dismiss
 open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {    
     private let delegate: ModalPresentationTransitioning
     public init(delegate: ModalPresentationTransitioning) {
@@ -31,11 +33,13 @@ open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransiti
         to.view.frame = transitionContext.finalFrame(for: to)
         to.view.layoutIfNeeded()
 
+        from.beginAppearanceTransition(false, animated: true)
         delegate.willPresentFrom(viewController: from)
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: delegate.presentOptions, animations: {
             self.delegate.presentingFrom(viewController: from)
         }, completion: { _ in
             self.delegate.didPresentFrom(viewController: from)
+            from.endAppearanceTransition()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }

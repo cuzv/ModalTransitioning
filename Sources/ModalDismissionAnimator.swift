@@ -19,21 +19,17 @@ open class ModalDismissionAnimator: NSObject, UIViewControllerAnimatedTransition
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard
-            let from = transitionContext.viewController(forKey: .from),
-            let to = transitionContext.viewController(forKey: .to)
-        else {
+        guard let to = transitionContext.viewController(forKey: .to) else {
             return transitionContext.completeTransition(false)
         }
         
-        let container = transitionContext.containerView
-        container.addSubview(from.view)
-        
+        to.beginAppearanceTransition(true, animated: true)
         delegate.willDismissTo(viewController: to)
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: delegate.dismissOptions, animations: {
             self.delegate.dismissingTo(viewController: to)
         }, completion: { _ in
             self.delegate.didDismissTo(viewController: to)
+            to.endAppearanceTransition()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
