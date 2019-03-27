@@ -17,7 +17,7 @@ public protocol ModalPresentationTransitioning: class {
     func didPresentFrom(viewController: UIViewController)
 }
 
-public extension ModalPresentationTransitioning {
+extension ModalPresentationTransitioning {
     public var presentDuration: TimeInterval { return 0.25 }
     public var presentOptions: UIView.AnimationOptions { return .curveEaseInOut }
     
@@ -35,7 +35,7 @@ public protocol ModalDismissionTransitioning: class {
     func didDismissTo(viewController: UIViewController)
 }
 
-public extension ModalDismissionTransitioning {
+extension ModalDismissionTransitioning {
     public var dismissDuration: TimeInterval { return 0.25 }
     public var dismissOptions: UIView.AnimationOptions { return .curveEaseInOut }
     
