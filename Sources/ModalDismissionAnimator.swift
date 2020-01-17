@@ -13,16 +13,16 @@ open class ModalDismissionAnimator: NSObject, UIViewControllerAnimatedTransition
     public init(delegate: ModalDismissionTransitioning) {
         self.delegate = delegate
     }
-    
+
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return delegate.dismissDuration
     }
-    
+
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let to = transitionContext.viewController(forKey: .to) else {
             return transitionContext.completeTransition(false)
         }
-        
+
         to.beginAppearanceTransition(true, animated: true)
         delegate.willDismissTo(viewController: to)
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: delegate.dismissOptions, animations: {

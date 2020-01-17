@@ -13,11 +13,11 @@ open class ModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDe
     public init(delegate: ModalTransitioning) {
         self.delegate = delegate
     }
-    
+
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ModalPresentationAnimator(delegate: delegate)
     }
-    
+
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ModalDismissionAnimator(delegate: delegate)
     }
