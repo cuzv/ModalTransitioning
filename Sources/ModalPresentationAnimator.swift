@@ -34,13 +34,9 @@ open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransiti
         to.view.layoutIfNeeded()
 
         from.beginAppearanceTransition(false, animated: true)
-        delegate.willPresentFrom(viewController: from)
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: delegate.presentOptions, animations: {
-            self.delegate.presentingFrom(viewController: from)
-        }, completion: { _ in
-            self.delegate.didPresentFrom(viewController: from)
+        delegate.runPresentAnimation { _ in
             from.endAppearanceTransition()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+        }
     }
 }

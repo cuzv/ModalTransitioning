@@ -58,8 +58,8 @@
 				F9DD1CF121159E2B00F009E9 /* Info.plist */,
 				F9DD1CFB21159E4400F009E9 /* ModalTransitioning.swift */,
 				F9DD1CF821159E4300F009E9 /* ModalTransitioningDelegate.swift */,
-				F9DD1CFA21159E4300F009E9 /* ModalDismissionAnimator.swift */,
 				F9DD1CF921159E4300F009E9 /* ModalPresentationAnimator.swift */,
+				F9DD1CFA21159E4300F009E9 /* ModalDismissionAnimator.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
