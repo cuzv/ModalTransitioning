@@ -25,8 +25,8 @@ open class ModalDismissionAnimator: NSObject, UIViewControllerAnimatedTransition
 
         to.beginAppearanceTransition(true, animated: true)
         delegate.runDismissAnimation { _ in
-            to.endAppearanceTransition()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            to.endAppearanceTransition()
         }
     }
 }

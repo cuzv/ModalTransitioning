@@ -35,8 +35,8 @@ open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransiti
 
         from.beginAppearanceTransition(false, animated: true)
         delegate.runPresentAnimation { _ in
-            from.endAppearanceTransition()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            from.endAppearanceTransition()
         }
     }
 }
