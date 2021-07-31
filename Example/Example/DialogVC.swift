@@ -9,8 +9,8 @@
 import UIKit
 import ModalTransitioning
 
-final class DialogVC: UIViewController {
-    @IBOutlet weak var coverView: UIView!
+final class DialogVC: BaseViewController {
+    @IBOutlet weak var dimView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerCenterYConstraint: NSLayoutConstraint!
     
@@ -37,20 +37,25 @@ final class DialogVC: UIViewController {
     }
     
     @IBAction func handleDismissAction(_ sender: UIButton) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        let parent = presentingViewController
+        presentingViewController?.dismiss(animated: true, completion: {
+            let vc = BaseViewController()
+            vc.view.backgroundColor = .cyan
+            parent?.show(vc, sender: nil)
+        })
     }
 }
 
 extension DialogVC: ModalTransitioning {
     func runPresentAnimation(completion: @escaping (Bool) -> Void) {
         view.layoutIfNeeded()
-        coverView.alpha = 0
+        dimView.alpha = 0
         containerView.alpha = 0
         containerCenterYConstraint.constant = 0
 
         UIView.animate(withDuration: presentDuration, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
-            self.coverView.alpha = 1
+            self.dimView.alpha = 1
             self.containerView.alpha = 1
         }, completion: completion)
     }
@@ -58,7 +63,7 @@ extension DialogVC: ModalTransitioning {
     func runDismissAnimation(completion: @escaping (Bool) -> Void) {
         UIView.animate(withDuration: dismissDuration, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
-            self.coverView.alpha = 0
+            self.dimView.alpha = 0
             self.containerView.alpha = 0
         }, completion: completion)
     }
