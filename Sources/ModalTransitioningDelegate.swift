@@ -9,16 +9,16 @@
 import UIKit
 
 open class ModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
-    private weak var delegate: ModalTransitioning!
-    public init(delegate: ModalTransitioning) {
-        self.delegate = delegate
-    }
+  private weak var delegate: ModalTransitioning!
+  public init(delegate: ModalTransitioning) {
+    self.delegate = delegate
+  }
 
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalPresentationAnimator(delegate: delegate)
-    }
+  public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    ModalPresentationAnimator(delegate: delegate)
+  }
 
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalDismissionAnimator(delegate: delegate)
-    }
+  public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    ModalDismissionAnimator(delegate: delegate)
+  }
 }

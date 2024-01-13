@@ -9,21 +9,21 @@
 import UIKit
 
 public protocol ModalPresentationTransitioning: AnyObject {
-    var presentDuration: TimeInterval { get }
-    func runPresentAnimation(completion: @escaping (Bool) -> Void)
+  var presentDuration: TimeInterval { get }
+  func runPresentAnimation(completion: @escaping (Bool) -> Void)
 }
 
-extension ModalPresentationTransitioning {
-    public var presentDuration: TimeInterval { return 0.25 }
+public extension ModalPresentationTransitioning {
+  var presentDuration: TimeInterval { 0.25 }
 }
 
 public protocol ModalDismissionTransitioning: AnyObject {
-    var dismissDuration: TimeInterval { get }
-    func runDismissAnimation(completion: @escaping (Bool) -> Void)
+  var dismissDuration: TimeInterval { get }
+  func runDismissAnimation(completion: @escaping (Bool) -> Void)
 }
 
-extension ModalDismissionTransitioning {
-    public var dismissDuration: TimeInterval { return 0.25 }
+public extension ModalDismissionTransitioning {
+  var dismissDuration: TimeInterval { 0.25 }
 }
 
-public typealias ModalTransitioning = ModalPresentationTransitioning & ModalDismissionTransitioning
+public typealias ModalTransitioning = ModalDismissionTransitioning & ModalPresentationTransitioning
