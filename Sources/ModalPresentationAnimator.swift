@@ -10,6 +10,7 @@ import UIKit
 
 // See https://github.com/pronebird/CustomModalTransition
 // See https://stackoverflow.com/questions/25488267/custom-transition-animation-not-calling-vc-lifecycle-methods-on-dismiss
+@MainActor
 open class ModalPresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
   private let delegate: ModalPresentationTransitioning
   public init(delegate: ModalPresentationTransitioning) {

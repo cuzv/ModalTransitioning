@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 open class ModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
   private weak var delegate: ModalTransitioning!
   public init(delegate: ModalTransitioning) {

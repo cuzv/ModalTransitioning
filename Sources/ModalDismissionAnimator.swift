@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 open class ModalDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
   private let delegate: ModalDismissionTransitioning
   public init(delegate: ModalDismissionTransitioning) {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 public protocol ModalPresentationTransitioning: AnyObject {
   var presentDuration: TimeInterval { get }
   func runPresentAnimation(completion: @escaping (Bool) -> Void)
@@ -17,6 +18,7 @@ public extension ModalPresentationTransitioning {
   var presentDuration: TimeInterval { 0.25 }
 }
 
+@MainActor
 public protocol ModalDismissionTransitioning: AnyObject {
   var dismissDuration: TimeInterval { get }
   func runDismissAnimation(completion: @escaping (Bool) -> Void)
